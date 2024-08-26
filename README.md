@@ -1,50 +1,17 @@
+Data Analysis Sales project
 
-### Data Analysis Using SQL
+This project focuses on performing data analysis using SQL and Power BI, with a focus on sales transactions. The data includes customer information, transactions, and date-related details. The analysis is done to extract insights such as total revenue, customer count, and specific transactions filtered by criteria like market location, currency, and time periods.
 
-1. Show all customer records
+SQL Queries
+The SQL queries in this project cover the following operations:
 
-    `SELECT * FROM customers;`
-
-1. Show total number of customers
-
-    `SELECT count(*) FROM customers;`
-
-1. Show transactions for Chennai market (market code for chennai is Mark001
-
-    `SELECT * FROM transactions where market_code='Mark001';`
-
-1. Show distrinct product codes that were sold in chennai
-
-    `SELECT distinct product_code FROM transactions where market_code='Mark001';`
-
-1. Show transactions where currency is US dollars
-
-    `SELECT * from transactions where currency="USD"`
-
-1. Show transactions in 2020 join by date table
-
-    `SELECT transactions.*, date.* FROM transactions INNER JOIN date ON transactions.order_date=date.date where date.year=2020;`
-
-1. Show total revenue in year 2020,
-
-    `SELECT SUM(transactions.sales_amount) FROM transactions INNER JOIN date ON transactions.order_date=date.date where date.year=2020 and transactions.currency="INR\r" or transactions.currency="USD\r";`
-	
-1. Show total revenue in year 2020, January Month,
-
-    `SELECT SUM(transactions.sales_amount) FROM transactions INNER JOIN date ON transactions.order_date=date.date where date.year=2020 and and date.month_name="January" and (transactions.currency="INR\r" or transactions.currency="USD\r");`
-
-1. Show total revenue in year 2020 in Chennai
-
-    `SELECT SUM(transactions.sales_amount) FROM transactions INNER JOIN date ON transactions.order_date=date.date where date.year=2020
-and transactions.market_code="Mark001";`
-
-
-Data Analysis Using Power BI
-============================
-
-1. Formula to create norm_amount column
-
-`= Table.AddColumn(#"Filtered Rows", "norm_amount", each if [currency] = "USD" or [currency] ="USD#(cr)" then [sales_amount]*75 else [sales_amount], type any)`
-
-
-
+Customer Data Retrieval: Display all customer records and count the total number of customers.
+Market-Specific Transactions: Filter transactions specific to the Chennai market (market code Mark001), and identify distinct product codes sold in that market.
+Currency-Specific Transactions: Retrieve transactions conducted in US dollars.
+Date-Based Analysis: Analyze transactions that occurred in 2020 by joining with a date table.
+Revenue Calculation: Calculate total revenue for the year 2020, further filtering by specific months and markets.
+Power BI
+In Power BI, a custom column norm_amount is created to standardize sales amounts across different currencies. The normalization accounts for currency differences, converting USD amounts to INR using a conversion rate of 75.
+Technologies Used
+SQL: For querying and analyzing data from the database.
+Power BI: For creating calculated columns and further data analysis.
